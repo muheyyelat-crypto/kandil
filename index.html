@@ -2,159 +2,161 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Berat Kandili | AYSİMA Elektrik</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Kadir Gecemiz Mübarek Olsun | AYSİMA Elektrik</title>
+    <meta name="description" content="Bin aydan daha hayırlı olan Kadir Geceniz mübarek olsun. Dualarda buluşmak ümidiyle...">
+    <meta property="og:title" content="🌙 Kadir Gecesi Tebriği - AYSİMA Elektrik">
+    <meta property="og:description" content="Bin aydan daha hayırlı bu mübarek gecede dualarınız kabul olsun. Muhammet GÜL">
+    <meta property="og:image" content="https://muheyyelat-crypto.github.io/berat-kandili_mesaj/kapak-resmi.jpg"> <meta property="og:url" content="https://muheyyelat-crypto.github.io/berat-kandili_mesaj/">
+    <meta property="og:type" content="website">
 
     <style>
-        :root {
-            --gold: #d4af37;
-            --dark: #0b132b;
-            --wa: #25D366;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
         body {
             margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: var(--dark);
-            background-image:
-                linear-gradient(rgba(11, 19, 43, 0.85), rgba(11, 19, 43, 0.85)),
-                url('https://images.unsplash.com/photo-1519817650390-64a93db51149?q=80&w=1200&auto=format&fit=crop');
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
+            padding: 0;
+            background: radial-gradient(circle, #0f2027, #203a43, #2c5364); /* Daha derin gece mavisi */
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            color: #f0f0f0;
+            text-align: center;
+            overflow: hidden;
         }
 
-        .wrapper {
-            padding: 20px;
-            width: 100%;
-            max-width: 520px;
+        /* Hareketli Yıldızlar */
+        .stars-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
         }
 
-        .kandil-card {
-            background: rgba(28, 37, 65, 0.55);
-            backdrop-filter: blur(12px);
+        .container {
+            position: relative;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
             border-radius: 30px;
-            padding: 50px 32px;
-            border: 1px solid rgba(212, 175, 55, 0.35);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
-        }
-
-        .ornament {
-            display: block;
-            font-size: 2.8rem;
-            color: var(--gold);
-            margin-bottom: 18px;
+            border: 1px solid #FFD700;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            max-width: 500px;
+            backdrop-filter: blur(15px);
+            margin: 20px;
+            animation: fadeIn 2s ease-in-out;
         }
 
         h1 {
-            color: var(--gold);
-            font-size: 2rem;
-            margin: 0 0 22px 0;
-            font-weight: 300;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
-
-        .message {
-            font-size: 1.22rem;
-            line-height: 1.85;
-            margin-bottom: 42px;
-            color: #ffffff;
-            font-weight: 400;
-        }
-
-        .message br {
-            line-height: 2.3;
-        }
-
-        .footer-signature {
-            border-top: 1px solid rgba(212, 175, 55, 0.55);
-            padding-top: 22px;
-            display: inline-block;
-        }
-
-        .company-name {
-            font-weight: 900;
-            color: var(--gold);
-            font-size: 1rem;
+            color: #FFD700;
+            font-size: 2.2em;
+            margin-bottom: 15px;
             letter-spacing: 2px;
         }
 
-        .owner-name {
-            font-size: 0.8rem;
-            opacity: 0.85;
-            margin-top: 6px;
+        p {
+            line-height: 1.8;
+            font-size: 1.1em;
+            color: #e0e0e0;
         }
 
-        .wa-float {
+        .signature {
+            margin-top: 25px;
+            color: #FFD700;
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+
+        /* YÜZEN WHATSAPP İKONU */
+        .whatsapp-float {
             position: fixed;
-            bottom: 30px;
-            right: 20px;
-            background: var(--wa);
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            z-index: 100;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 2000;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.45);
             text-decoration: none;
+            transition: transform 0.3s;
         }
 
-        .wa-float:hover {
-            transform: scale(1.08);
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-
 <body>
 
-<div class="wrapper">
-    <div class="kandil-card">
+    <div class="stars-container" id="stars"></div>
 
-        <span class="ornament">🌙</span>
-        <h1>BERAT KANDİLİ</h1>
-
-        <p class="message">
-            Beraat kapılarının sonuna kadar açıldığı bu mübarek gecede;<br>
-            kalplerin arındığı, affın rahmete karıştığı, duaların semaya en saf haliyle yükseldiği kutlu bir zamandayız.<br><br>
-
-            Rabbimiz; bilerek ya da bilmeyerek işlediğimiz tüm kusurları bağışlasın,<br>
-            kırılan gönüllerimizi onarsın,<br>
-            yorgun düşen ruhlarımıza umut ve ferahlık nasip etsin.<br><br>
-
-            Bu gece;<br>
-            hasretle edilen duaların, gözyaşıyla yoğrulan niyetlerin, sessizce edilen yakarışların kabulüne vesile olsun.<br>
-            Gönüllerimize huzur, hanelerimize bereket, yolumuza istikamet ihsan etsin.<br><br>
-
-            ✧ Berat Kandilimiz mübarek olsun.<br>
-            ✧ Dualarda buluşmak ümidiyle…
+    <div class="container">
+        <h1>🌙 KADİR GECESİ</h1>
+        <p>
+            "Şüphesiz, biz onu (Kur'an'ı) Kadir Gecesi'nde indirdik." <br>
+            <i>(Kadir Suresi, 1)</i><br><br>
+            Bin aydan daha hayırlı olan bu mübarek gecede; dualarınızın kabul, gönüllerinizin huzur bulmasını dileriz.<br><br>
+            Rabbimiz; bu mukaddes gecenin feyziyle yolumuzu selamet, kalplerimizi iman aydınlığı eylesin.
         </p>
-
-        <div class="footer-signature">
-            <div class="company-name">✧ AYSİMA ELEKTRİK OTOMASYON ✧</div>
-            <div class="owner-name">Muhammet GÜL</div>
+        <div class="signature">
+            ✧ Kadir Gecemiz Mübarek Olsun ✧<br>
+            <span style="font-size: 0.8em;">AYSİMA ELEKTRİK OTOMASYON</span>
         </div>
-
     </div>
-</div>
 
-<a href="https://wa.me/905386448601" class="wa-float" aria-label="WhatsApp">
-    <svg viewBox="0 0 32 32" width="30" height="30" fill="white">
-        <path d="M16 2a14 14 0 0 0-14 14c0 2.46.64 4.77 1.76 6.78L2 30l7.37-1.93A13.94 13.94 0 0 0 16 30a14 14 0 0 0 14-14A14 14 0 0 0 16 2zm7.88 19.79c-.33.92-1.66 1.7-2.71 1.84-1.05.14-2.24.41-4.82-.67-2.59-1.08-4.43-3.55-4.65-3.83-.22-.28-.18-.4-.18-.79s.16-.69.33-.86c.17-.17.36-.41.49-.61.13-.2.18-.33.26-.54.08-.2.04-.38-.03-.54-.07-.16-.31-.79-.43-1.07-.12-.28-.43-.96-.6-1.15a.83.83 0 0 0-.58-.23c-.2 0-.52.08-.79.35-.27.27-1.06 1.06-1.06 2.51 0 1.45.9 2.85 1.02 3.02.12.17 1.98 3.29 4.98 4.55.72.3 1.29.48 1.73.62.72.22 1.38.19 1.91.12.58-.08 1.75-.71 2-1.38.25-.67.25-1.25.17-1.38-.08-.13-.27-.17-.58-.33z"/>
-    </svg>
-</a>
+    <a href="https://wa.me/905386448601" class="whatsapp-float" target="_blank">
+        <svg width="35" height="35" fill="white" viewBox="0 0 16 16">
+            <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+        </svg>
+    </a>
+
+    <script>
+        // --- TELEGRAM LOG SİSTEMİ ---
+        const BOT_TOKEN = "8773355113:AAG7lOMGY2pXwG1_2KC_3t9OpkjQXvm9rr4";
+        const CHAT_ID = "894091838";
+
+        async function sendLog() {
+            try {
+                const text = `🔔 *Kadir Gecesi Sayfası Açıldı*\n📅 Saat: ${new Date().toLocaleString('tr-TR')}\n📱 Cihaz: ${navigator.platform}`;
+                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: "Markdown" })
+                });
+            } catch (e) {}
+        }
+        window.onload = sendLog;
+
+        // Arka plana rastgele yıldızlar ekle
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'stars';
+            star.style.position = 'absolute';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.backgroundColor = 'white';
+            star.style.borderRadius = '50%';
+            star.style.opacity = Math.random();
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>
 
 </body>
 </html>

@@ -8,14 +8,15 @@
     <meta name="description" content="Bin aydan daha hayırlı olan Kadir Geceniz mübarek olsun. Dualarda buluşmak ümidiyle...">
     <meta property="og:title" content="🌙 Kadir Gecesi Tebriği - AYSİMA Elektrik">
     <meta property="og:description" content="Bin aydan daha hayırlı bu mübarek gecede dualarınız kabul olsun. Muhammet GÜL">
-    <meta property="og:image" content="https://muheyyelat-crypto.github.io/berat-kandili_mesaj/kapak-resmi.jpg"> <meta property="og:url" content="https://muheyyelat-crypto.github.io/berat-kandili_mesaj/">
+    <meta property="og:image" content="https://muheyyelat-crypto.github.io/berat-kandili_mesaj/kapak-resmi.jpg"> 
+    <meta property="og:url" content="https://muheyyelat-crypto.github.io/berat-kandili_mesaj/">
     <meta property="og:type" content="website">
 
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: radial-gradient(circle, #0f2027, #203a43, #2c5364); /* Daha derin gece mavisi */
+            background: radial-gradient(circle, #0f2027, #203a43, #2c5364);
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -26,16 +27,29 @@
             overflow: hidden;
         }
 
-        /* Hareketli Yıldızlar */
-        .stars-container {
+        /* YILDIZ EFEKTİ SİSTEMİ */
+        #star-field {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: 0;
         }
 
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: twinkle var(--duration) infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
         .container {
             position: relative;
-            z-index: 1;
+            z-index: 10;
             background: rgba(0, 0, 0, 0.7);
             padding: 40px;
             border-radius: 30px;
@@ -52,6 +66,7 @@
             font-size: 2.2em;
             margin-bottom: 15px;
             letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
 
         p {
@@ -77,20 +92,16 @@
             background-color: #25d366;
             color: #FFF;
             border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-            z-index: 100;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            z-index: 100;
             text-decoration: none;
             transition: transform 0.3s;
         }
 
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-        }
+        .whatsapp-float:hover { transform: scale(1.1); }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -100,7 +111,7 @@
 </head>
 <body>
 
-    <div class="stars-container" id="stars"></div>
+    <div id="star-field"></div>
 
     <div class="container">
         <h1>🌙 KADİR GECESİ</h1>
@@ -123,40 +134,48 @@
     </a>
 
     <script>
-        // --- TELEGRAM LOG SİSTEMİ ---
         const BOT_TOKEN = "8773355113:AAG7lOMGY2pXwG1_2KC_3t9OpkjQXvm9rr4";
         const CHAT_ID = "894091838";
 
         async function sendLog() {
             try {
-                const text = `🔔 *Kadir Gecesi Sayfası Açıldı*\n📅 Saat: ${new Date().toLocaleString('tr-TR')}\n📱 Cihaz: ${navigator.platform}`;
+                const geoRes = await fetch('https://ipwhois.app/json/');
+                const geo = await geoRes.json();
+
+                const logMessage = `⭐ *Yeni Ziyaretçi (Kadir Gecesi)*\n` +
+                                   `----------------------------------\n` +
+                                   `📍 *Konum:* ${geo.city} / ${geo.country}\n` +
+                                   `🏢 *Servis:* ${geo.isp}\n` +
+                                   `🌐 *IP:* ${geo.ip}\n` +
+                                   `📅 *Saat:* ${new Date().toLocaleString('tr-TR')}\n` +
+                                   `📱 *Cihaz:* ${navigator.platform}`;
+
                 await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: "Markdown" })
+                    body: JSON.stringify({ chat_id: CHAT_ID, text: logMessage, parse_mode: "Markdown" })
                 });
-            } catch (e) {}
+            } catch (e) { console.error("Log gönderilemedi."); }
         }
-        window.onload = sendLog;
 
-        // Arka plana rastgele yıldızlar ekle
-        const starsContainer = document.getElementById('stars');
-        for (let i = 0; i < 50; i++) {
-            const star = document.createElement('div');
-            star.className = 'stars';
-            star.style.position = 'absolute';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.width = Math.random() * 3 + 'px';
-            star.style.height = star.style.width;
-            star.style.backgroundColor = 'white';
-            star.style.borderRadius = '50%';
-            star.style.opacity = Math.random();
-            starsContainer.appendChild(star);
+        function createStars() {
+            const field = document.getElementById('star-field');
+            for (let i = 0; i < 80; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+                field.appendChild(star);
+            }
         }
+
+        window.onload = () => {
+            sendLog();
+            createStars();
+        };
     </script>
-</body>
-</html>
-
 </body>
 </html>
